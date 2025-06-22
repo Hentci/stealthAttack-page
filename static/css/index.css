@@ -354,7 +354,7 @@ input:checked + .slider:after
         opacity: 0.1; 
         transform: scale(0.95);
         filter: blur(2px);
-        font-weight: bold;
+        /* font-weight: bold; */
     }
     50% { 
         opacity: 1;           /* 從 0.9 改為 1 (完全不透明) */
@@ -362,6 +362,6 @@ input:checked + .slider:after
         filter: blur(0px);     /* 保持 0px (完全清晰) */
         color: #000;        /* 加入這行：50% 時變成純白色 */
         text-shadow: 0 0 40px rgba(255, 255, 255, 0.6); /* 加入這行：更強的白色光暈 */
-        font-weight: bold;
+        /* font-weight: bold; */
     }
 }
