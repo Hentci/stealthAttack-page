@@ -80,7 +80,9 @@ body {
 
 .author-block {
   display: inline-block;
+  margin-right: 40px;
 }
+
 
 .publication-banner img {
 }
