@@ -262,66 +262,6 @@ input:checked + .slider:after
   background: #1772d0;
 } */
 
-.button {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    text-size-adjust: 100%;
-    font-family: 'Noto Sans', sans-serif;
-    font-style: inherit;
-    font-weight: inherit;
-    box-sizing: inherit;
-    text-decoration: none;
-    user-select: none;
-    -webkit-appearance: none;
-    align-items: center;
-    border: 1px solid transparent;
-    box-shadow: none;
-    display: inline-flex;
-    height: 2.5em;
-    line-height: 1.5;
-    position: relative;
-    vertical-align: top;
-    border-width: 1px;
-    cursor: pointer;
-    justify-content: center;
-    padding-bottom: calc(.5em - 1px);
-    padding-top: calc(.5em - 1px);
-    text-align: center;
-    white-space: nowrap;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #363636;
-    border-color: transparent;
-    color: #fff;
-    font-size: 1.4rem;
-    border-radius: 290486px;
-    padding-left: calc(1em + .25em);
-    padding-right: calc(1em + .25em);
-  }
-
-.button .icon {
-      -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    text-size-adjust: 100%;
-    font-family: 'Noto Sans', sans-serif;
-    user-select: none;
-    line-height: 1.5;
-    cursor: pointer;
-    text-align: center;
-    white-space: nowrap;
-    color: #fff;
-    font-size: 1rem;
-    box-sizing: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5em;
-    width: 1.5em;
-    margin-left: calc(-.5em - 1px);
-    margin-right: .25em;
-}
 
 .neon-text {
   font-size: 3rem;
@@ -364,4 +304,71 @@ input:checked + .slider:after
         text-shadow: 0 0 40px rgba(255, 255, 255, 0.6); /* 加入這行：更強的白色光暈 */
         /* font-weight: bold; */
     }
+}
+
+
+/* 基礎字體大小調整 */
+body {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 18px; /* 新增：基礎字體大小 */
+}
+
+/* 標題放大 */
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 4.5rem !important; /* 新增：主標題大小 */
+    line-height: 1.2; /* 新增：行高調整 */
+}
+
+/* 副標題調整 */
+.publication-subtitle {
+    font-size: 2.5rem !important; /* 新增：副標題大小 */
+    line-height: 1.2; /* 新增：行高調整 */
+}
+
+/* 作者名稱放大 */
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 2.0rem !important; /* 新增：作者名稱大小 */
+    line-height: 1.8; /* 新增：行高調整 */
+}
+
+.publication-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.publication-links .link-block {
+    display: inline-flex;
+}
+
+.publication-authors {
+    margin-bottom: 1rem;
+}
+
+.publication-title {
+    margin-bottom: 1rem;
+}
+
+.publication-subtitle {
+    margin-bottom: 1rem;
+}
+
+/* 確保按鈕區塊完全置中 */
+.publication-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.publication-links .link-block {
+    display: inline-flex;
 }
