@@ -107,7 +107,7 @@
                     </h2>
                     
                     <h3 class="subtitle is-3 publication-subtitle">
-                        <strong>arXiv 2025</strong>
+                        <strong>ICCV 2025</strong>
                     </h3>
                     
                     <div class="is-size-4 publication-authors">
@@ -177,86 +177,107 @@
 </section>
 
 <section class="hero teaser">
-  <div class="container is-max-desktop">
+  <!-- <div class="container is-max-desktop">
     <div class="hero-body">
       <div class="pipeline-figure">
         <img src="./static/images/teaser.png" alt="Teaser" style="width: 100%;"/>
       </div>
       <h2 class="subtitle is-3 has-text-centered">
-        <!-- <span class="dnerf">AuraFusion360</span> can do inpainting in the 360° unbounded scene. -->
         <strong>StealthAttack</strong> can inject viewpoint-specific <span class="subtitle is-3 ghost-effect">illusions</span> into 3D Gaussian Splatting scenes.
       </h2>
     </div>
-  </div>
+  </div> -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <video id="teaser-video-ours" width="100%" autoplay loop muted controls>
+                  <source src="videos/Su2024Boost.mp4" type="video/mp4" />
+                </video>
+			</div>
+        </div>
 </section>
 
-<section class="hero is-light is-small" >
+
+
+<section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
+      
+      <!-- 新增：統一標題區域 -->
+      <div class="comparison-header" style="display: flex; justify-content: space-between; margin-bottom: 20px; padding: 0 20px;">
+        <div class="header-left" style="text-align: center; flex: 1; padding: 15px; border: 2px solid #28a745; border-radius: 8px; margin-right: 10px; background: rgba(40, 167, 69, 0.05);">
+          <h3 style="margin: 0; color: #28a745; font-size: 1.2em;">✓ Original Scene</h3>
+          <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">Clean/Unmodified</p>
+        </div>
+        <div class="header-right" style="text-align: center; flex: 1; padding: 15px; border: 2px solid #dc3545; border-radius: 8px; margin-left: 10px; background: rgba(220, 53, 69, 0.05);">
+          <h3 style="margin: 0; color: #dc3545; font-size: 1.2em;">⚠️ Under Attack</h3>
+          <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">Our Method Applied</p>
+        </div>
+      </div>
+
+      <!-- 你原來的輪播代碼 -->
       <div id="results-carousel" class="carousel results-carousel">
-
-
-          <div class="item item-cone">
-              <div class="video-compare-container" id="coneDiv" style="width: 100%;">
-                  <video class="video" id="cone" loop playsinline autoPlay muted src="./videos/360-USID/concats/cone.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                  <canvas height=0 class="videoMerge" id="coneMerge" style="width: 100%;"></canvas>
-              </div>
+        <div class="item item-bicycle">
+          <div class="video-compare-container" id="bicycleDiv" style="width: 100%;">
+            <video class="video" id="bicycle" loop playsinline autoPlay muted src="./videos/ours-vs-naive/bicycle.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="bicycleMerge" style="width: 100%;"></canvas>
           </div>
-
-          <div class="item item-newcone">
-              <div class="video-compare-container" id="newconeDiv" style="width: 100%;">
-                  <video class="video" id="newcone" loop playsinline autoPlay muted src="./videos/360-USID/concats/newcone.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                  <canvas height=0 class="videoMerge" id="newconeMerge" style="width: 100%;"></canvas>
-              </div>
-          </div>
-
-          <div class="item">
-              <div class="video-compare-container" id="skateboardDiv" style="width: 100%;">
-                  <video class="video" id="skateboard" loop playsinline autoPlay muted src="./videos/360-USID/concats/skateboard.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                  <canvas height=0 class="videoMerge" id="skateboardMerge" style="width: 100%;"></canvas>
-              </div>
-          </div>
-
-          <div class="item item-cookie">
-            <div class="video-compare-container" id="cookieDiv" style="width: 100%;">
-                <video class="video" id="cookie" loop playsinline autoPlay muted src="./videos/360-USID/concats/cookie.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                <canvas height=0 class="videoMerge" id="cookieMerge" style="width: 100%;"></canvas>
-            </div>
-          </div>
-
-          <div class="item">
-              <div class="video-compare-container" id="sunflowerDiv" style="width: 100%;">
-                  <video class="video" id="sunflower" loop playsinline autoPlay muted src="./videos/360-USID/concats/sunflower.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                  <canvas height=0 class="videoMerge" id="sunflowerMerge" style="width: 100%;"></canvas>
-              </div>
-          </div>
-
-          <div class="item">
-            <div class="video-compare-container" id="plantDiv" style="width: 100%;">
-                <video class="video" id="plant" loop playsinline autoPlay muted src="./videos/360-USID/concats/plant.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                <canvas height=0 class="videoMerge" id="plantMerge" style="width: 100%;"></canvas>
-            </div>
-          </div>
-
-          <div class="item item-carton">
-            <div class="video-compare-container" id="cartonDiv" style="width: 100%;">
-                <video class="video" id="carton" loop playsinline autoPlay muted src="./videos/360-USID/concats/carton.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
-                <canvas height=0 class="videoMerge" id="cartonMerge" style="width: 100%;"></canvas>
-            </div>
         </div>
 
+        <div class="item item-francis">
+          <div class="video-compare-container" id="francisDiv" style="width: 100%;">
+            <video class="video" id="francis" loop playsinline autoPlay muted src="./videos/ours-vs-naive/francis.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="francisMerge" style="width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <!-- 其他視頻項目保持不變 -->
+        <div class="item item-hydrant">
+          <div class="video-compare-container" id="hydrantDiv" style="width: 100%;">
+            <video class="video" id="hydrant" loop playsinline autoPlay muted src="./videos/ours-vs-naive/hydrant.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="hydrantMerge" style="width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="video-compare-container" id="skateboardDiv" style="width: 100%;">
+            <video class="video" id="skateboard" loop playsinline autoPlay muted src="./videos/360-USID/concats/skateboard.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="skateboardMerge" style="width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="video-compare-container" id="sunflowerDiv" style="width: 100%;">
+            <video class="video" id="sunflower" loop playsinline autoPlay muted src="./videos/360-USID/concats/sunflower.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="sunflowerMerge" style="width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="video-compare-container" id="plantDiv" style="width: 100%;">
+            <video class="video" id="plant" loop playsinline autoPlay muted src="./videos/360-USID/concats/plant.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="plantMerge" style="width: 100%;"></canvas>
+          </div>
+        </div>
+
+        <div class="item item-carton">
+          <div class="video-compare-container" id="cartonDiv" style="width: 100%;">
+            <video class="video" id="carton" loop playsinline autoPlay muted src="./videos/360-USID/concats/carton.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
+            <canvas height=0 class="videoMerge" id="cartonMerge" style="width: 100%;"></canvas>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <h2 class="subtitle is-4 has-text-centered" style="margin-top: -1.2rem;">
-    Inpainting Results of Our <span class="dnerf">360-USID</span> Dataset
-  </h2>
+  
+  <!-- 你原來的subtitle -->
+  <!-- <h2 class="subtitle is-4 has-text-centered" style="margin-top: -1.2rem;">
+    3DGS scenes under ours attack.
+  </h2> -->
 </section>
 
 
 
-<section class="hero is-light is-small" >
+<!-- <section class="hero is-light is-small" >
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -315,7 +336,7 @@
   <h2 class="subtitle is-4 has-text-centered" style="margin-top: -1.2rem;">
     Inpainting Results of Other Collected 360 Scene.
   </h2>
-</section>
+</section> -->
 
 
 
