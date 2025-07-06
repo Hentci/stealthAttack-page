@@ -115,7 +115,7 @@
                             <a href="https://hentci.github.io/">Bo-Hsu Ke</a>
                         </span>
                         <span class="author-block">
-                            <a href="">You-Zhe Xie</a>
+                            <a href="https://www.youzhexie.me/">You-Zhe Xie</a>
                         </span>
                         <span class="author-block">
                             <a href="https://yulunalexliu.github.io/">Yu-Lun Liu</a>
@@ -185,17 +185,25 @@
       <h2 class="subtitle is-3 has-text-centered">
         <strong>StealthAttack</strong> can inject viewpoint-specific <span class="subtitle is-3 ghost-effect">illusions</span> into 3D Gaussian Splatting scenes.
       </h2>
+      
+      <!-- 把影片也放進相同的容器結構裡 -->
+  <div class="row">
+          <div class="col-md-6">
+              <video id="teaser-video-left" width="100%" autoplay loop muted controls>
+                  <source src="videos/teaser/road_compress.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2"><strong>For stealthy illusory attack</strong></p>
+          </div>
+          <div class="col-md-6">
+              <video id="teaser-video-right" width="100%" autoplay loop muted controls>
+                  <source src="videos/teaser/bicycle_compress.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2"><strong>For view-specific watermarking</strong></p>
+          </div>
+      </div>
     </div>
   </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <video id="teaser-video-ours" width="100%" autoplay loop muted controls>
-                  <source src="videos/teaser/road.mp4" type="video/mp4" />
-                </video>
-			</div>
-        </div>
 </section>
-
 
 
 <section class="hero is-light is-small">
@@ -406,19 +414,24 @@
       <!-- Unseen Mask Gen. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-4">Depth-Aware Unseen Mask Generation</h2>
+          <h2 class="title is-3">Illustration of two attack modes motivating our
+            Density-Guided Point Cloud Attack.</h2>
           <div class="unseen-figure">
-            <img src="./static/images/unseen.png" alt="Unseen" style="width: 100%;"/>
+            <img src="./static/images/3.3.png" alt="3.3" style="width: 100%;"/>
           </div>
           <p>
-            Depth-aware unseen mask generation creates depth-aware unseen contours via depth warping to identify occluded regions, then uses these contours as bounding box prompts for SAM2 to segment unseen areas.
+            (a) Points placed outside
+            the coverage of innocent viewpoints can effectively embed illusions visible only from the poisoned view. (b) Points occluded
+            from innocent viewpoints also provide viable hidden locations.
+            These scenarios motivate our Density-Guided strategy for robust
+            and stealthy attacks.
           </p>
         </div>
       </div>
       <!-- Unseen Mask Gen. -->
 
       <!-- AGDD. -->
-      <div class="column">
+      <!-- <div class="column">
         <div class="content">
           <h2 class="title is-4">Adaptive Guided Depth Diffusion (AGDD)</h2>
             <div class="agdd-figure">
@@ -428,7 +441,7 @@
               AGDD predicts estimated depth with existing geometric scale in a zero-shot manner through latent optimization with an adaptive loss term to achieve accurate alignment in regions adjacent to unseen areas, which is more appropriate for depth inpainting scenarios.
             </p>
         </div>
-      </div>
+      </div> -->
       <!--/ AGDD. -->
     </div>
 
