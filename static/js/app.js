@@ -95,28 +95,30 @@ function selectCompVideo(methodPill, scenePill, n_views, modePill) {
 function updateMethodVisibility(mode) {
     // 定義每個mode可以顯示的方法列表
     const methodsByMode = {
-        'rgb': ['gscream', 'gaussiangrouping', 'infusion', '2dgsleftrefill', 'spin'],
-        'depth': ['infusion', 'poisson', 'gdd', 'scaleshift'],
-        'mask': ['gaussiangrouping']
+        // 'rgb': ['gscream', 'gaussiangrouping', 'infusion', '2dgsleftrefill', 'spin'],
+        // 'depth': ['infusion', 'poisson', 'gdd', 'scaleshift'],
+        // 'mask': ['gaussiangrouping']
+        'rgb': ['ipanerfnerfacto', 'ipanerfinstantngp', 'ipasplat', 'naive']
     };
 
     // 定義每個mode可以顯示的場景列表
     const scenesByMode = {
-        'rgb': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room', 'Other360_vasedeck', 'Other360_pinecone'], // 所有場景
-        'depth': ['360USID_skateboard', '360USID_sunflower', 'Other360_bear', 'Other360_bonsai', 'Other360_vasedeck', 'Other360_pinecone'],
-        'mask': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room'],
+        // 'rgb': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room', 'Other360_vasedeck', 'Other360_pinecone'], // 所有場景
+        // 'depth': ['360USID_skateboard', '360USID_sunflower', 'Other360_bear', 'Other360_bonsai', 'Other360_vasedeck', 'Other360_pinecone'],
+        // 'mask': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room'],
+        'rgb': ['bicycle', 'bonsai', 'counter', 'garden', 'kitchen', 'room', 'stump']
     };
 
     const titlesByMode = {
-        'rgb': 'AuraFusion360 outperforms other methods in unbounded 360° scene inpainting.',
-        'depth': 'Our Adaptive Guided Depth Diffusion effectively produces well-aligned depth, enabling the accurate unprojection of the reference view into high-quality initial Gaussians. This ensures a reliable foundation for our subsequent SDEdit processes.',
-        'mask': 'Our Depth-Aware Unseen Mask Generation scheme can accurately identify unseen regions.'
+        'rgb': 'StealthAttack outperforms other methods in illusory object injection attack.',
+        // 'depth': 'Our Adaptive Guided Depth Diffusion effectively produces well-aligned depth, enabling the accurate unprojection of the reference view into high-quality initial Gaussians. This ensures a reliable foundation for our subsequent SDEdit processes.',
+        // 'mask': 'Our Depth-Aware Unseen Mask Generation scheme can accurately identify unseen regions.'
     };
 
     const descriptByMode = {
-        'rgb': "Baseline method (left) vs AuraFusion360 (right).",
-        'depth': "Baseline method (left) vs Our Adaptive Guided Depth Diffusion (right).",
-        'mask': "Gaussian Grouping Video Tracker (left) vs Our Depth-Aware Unseen Mask Generation (right)."
+        'rgb': "Baseline method (left) vs our StealthAttack (right).",
+        // 'depth': "Baseline method (left) vs Our Adaptive Guided Depth Diffusion (right).",
+        // 'mask': "Gaussian Grouping Video Tracker (left) vs Our Depth-Aware Unseen Mask Generation (right)."
     }
 
     const descriptionElement = document.getElementById('description-text');

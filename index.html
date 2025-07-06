@@ -379,7 +379,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-2">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified" style="font-size: 0.75em;">
           <p>
             3D scene representation methods like Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS) have significantly advanced novel view synthesis. As these methods become prevalent, addressing their vulnerabilities becomes critical. We analyze 3DGS robustness against image-level poisoning attacks and propose a novel density-guided poisoning method. Our method strategically injects Gaussian points into low-density regions identified via Kernel Density Estimation (KDE), embedding viewpoint-dependent illusory objects clearly visible from poisoned views while minimally affecting innocent views. Additionally, we introduce an adaptive noise strategy to disrupt multi-view consistency, further enhancing attack effectiveness. We propose a KDE-based evaluation protocol to assess attack difficulty systematically, enabling objective benchmarking for future research. Extensive experiments demonstrate our method's superior performance compared to state-of-the-art techniques.
           </p>
@@ -395,9 +395,9 @@
         <div class="pipeline-figure">
           <img src="./static/images/pipeline.png" alt="Pipeline" style="width: 100%;"/>
         </div>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified" style="font-size: 0.75em;">
           <p>
-            Our approach consists of two complementary strategies: (a) <strong>DensityGuided Point Cloud Attack</strong>, where we employ volume rendering and Kernel Density Estimation (KDE) to identify optimal low-density
+            Our approach consists of two complementary strategies: (a) <strong>Density-Guided Point Cloud Attack</strong>, where we employ volume rendering and Kernel Density Estimation (KDE) to identify optimal low-density
             locations for embedding illusory objects into the initial Gaussian point cloud; and (c) <strong>View Consistency Disruption Attack</strong>, which
             strategically introduces adaptive Gaussian noise to innocent views during training, effectively disturbing multi-view consistency. (b)
             illustrates the standard 3D Gaussian Splatting (3DGS) training pipeline for reference. The combined strategies successfully inject convincing
@@ -417,6 +417,7 @@
           <div class="unseen-figure">
             <img src="./static/images/3.3.png" alt="3.3" style="width: 100%;"/>
           </div>
+          <div class="content has-text-justified" style="font-size: 0.75em;">
           <p>
             (a) Points placed outside
             the coverage of innocent viewpoints can effectively embed illusions visible only from the poisoned view. (b) Points occluded
@@ -424,6 +425,7 @@
             These scenarios motivate our Density-Guided strategy for robust
             and stealthy attacks.
           </p>
+          </div>
         </div>
       </div>
       <!-- Unseen Mask Gen. -->
@@ -491,20 +493,20 @@
       <div class="column is-full-width">
 
           <h3 id="title-text" class="subtitle is-4" style="text-align: center;">
-            AuraFusion360 outperforms other methods in unbounded 360° scene inpainting.
+            StealthAttack outperforms other methods in unbounded 360° scene inpainting.
           </h3>
 
           <div class="text-center ">
               <ul class="nav nav-pills center-pills">
-                  <li class="method-pill active" data-value="gscream"
-                      onclick="selectCompVideo(this, activeScenePill)"><a>GScream</a></li>
-                  <li class="method-pill" data-value="gaussiangrouping"
-                      onclick="selectCompVideo(this, activeScenePill)"><a>GaussianGrouping</a></li>
-                  <li class="method-pill" data-value="infusion"
-                      onclick="selectCompVideo(this, activeScenePill)"><a>InFusion</a></li>
-                  <li class="method-pill" data-value="2dgsleftrefill"
-                      onclick="selectCompVideo(this, activeScenePill)"><a>2DGS+LeftRefill</a></li>
-                      <li class="method-pill" data-value="spin"
+                  <li class="method-pill active" data-value="naive"
+                      onclick="selectCompVideo(this, activeScenePill)"><a>Naive 3DGS</a></li>
+                  <li class="method-pill" data-value="ipanerfnerfacto"
+                      onclick="selectCompVideo(this, activeScenePill)"><a>IPA-NeRF (Nerfacto)</a></li>
+                  <li class="method-pill" data-value="ipanerfinstantngp"
+                      onclick="selectCompVideo(this, activeScenePill)"><a>IPA-NeRF (Instant-NGP)</a></li>
+                  <li class="method-pill" data-value="ipasplat"
+                      onclick="selectCompVideo(this, activeScenePill)"><a>IPA-Splat</a></li>
+                      <!-- <li class="method-pill" data-value="spin"
                       onclick="selectCompVideo(this, activeScenePill)"><a>SPin-NeRF*</a></li>
 
                   <li class="method-pill" data-value="poisson"
@@ -512,7 +514,7 @@
                   <li class="method-pill" data-value="gdd"
                       onclick="selectCompVideo(this, activeScenePill)"><a>Guided Depth Diffusion</a></li>
                   <li class="method-pill" data-value="scaleshift"
-                      onclick="selectCompVideo(this, activeScenePill)"><a>Scale & Shift</a></li>
+                      onclick="selectCompVideo(this, activeScenePill)"><a>Scale & Shift</a></li> -->
               </ul>
               <!-- <ul class="nav nav-pills center-pills">
                   <li class="method-pill" data-value="freenerf"
@@ -535,15 +537,15 @@
           <div class="text-center">
               <div class="video-container">
                   <video class="video" style="height: 280px; max-width: 100%;" m id="compVideo0" loop playsinline autoplay muted>
-                      <source src="./videos/comparison/360USID_skateboard_gscream_vs_ours_rgb.mp4" />
+                      <source src="./videos/comparison/bicycle_naive_vs_ours_rgb.mp4" />
                   </video>
                   <video class="video" style="height: 280px; max-width: 100%;" id="compVideo1" loop playsinline autoplay muted hidden>
-                      <source src="./videos/comparison/360USID_skateboard_gscream_vs_ours_rgb.mp4" />
+                      <source src="./videos/comparison/bicycle_naive_vs_ours_rgb.mp4" />
                   </video>
               </div>
 
 
-              <div class="text-center" style="color: black;" id="mode-pills">
+              <!-- <div class="text-center" style="color: black;" id="mode-pills">
                   <div class="btn-group btn-group-sm">
                       <span class="btn btn-primary mode-pill active" data-value="rgb"
                           onclick="updateMethodVisibility('rgb'); selectCompVideo(activeMethodPill, activeScenePill, null, this)">
@@ -558,12 +560,12 @@
                           Depth Initilaized Points
                       </span>
                   </div>
-              </div>
+              </div> -->
 
 
               <br>
               <p class="text-justify" style="text-align: center; display: none;">
-                Baseline method (left) vs AuraFusion360 (right). Scene trained on <span id="compVideoValue">3</span> views. Try selecting different methods and scenes!
+                Baseline method (left) vs StealthAttack (right). Scene trained on <span id="compVideoValue">3</span> views. Try selecting different methods and scenes!
               </p>
               <p class="text-justify" style="text-align: center;">
                 <span id="description-text">3</span> Try selecting different methods and scenes!
@@ -592,7 +594,7 @@
               </script>
 
               <div class="pill-row scene-pills" id="scene-pills">
-                  <span class="pill scene-pill" data-value="360USID_carton" onclick="selectCompVideo(activeMethodPill, this, 3)">
+                  <!-- <span class="pill scene-pill" data-value="360USID_carton" onclick="selectCompVideo(activeMethodPill, this, 3)">
                       <img class="thumbnail-img" src="thumbnails/360USID_carton_thumbnail.png" alt="360USID/carton" width="64">
                   </span>
                   <span class="pill scene-pill" data-value="360USID_cone" onclick="selectCompVideo(activeMethodPill, this, 3)">
@@ -613,25 +615,16 @@
                   <span class="pill scene-pill" data-value="360USID_cookie" onclick="selectCompVideo(activeMethodPill, this, 6)">
                       <img class="thumbnail-img" src="thumbnails/360USID_cookie_thumbnail.png" alt="360USID/cookie" width="64">
                   </span>
-                  <br>
+                  <br> -->
 
-                  <span class="pill scene-pill" data-value="Other360_kitchen" onclick="selectCompVideo(activeMethodPill, this, 6)">
+                  <span class="pill scene-pill" data-value="kitchen" onclick="selectCompVideo(activeMethodPill, this, 6)">
                     <img class="thumbnail-img" src="thumbnails/Other360_kitchen_thumbnail.png" alt="Other360/kitchen" width="64">
                   </span>
-                  <span class="pill scene-pill" data-value="Other360_bear" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_bear_thumbnail.png" alt="Other360/bear" width="64">
-                  </span>
-                  <span class="pill scene-pill" data-value="Other360_bonsai" onclick="selectCompVideo(activeMethodPill, this, 6)">
+                  <span class="pill scene-pill" data-value="bonsai" onclick="selectCompVideo(activeMethodPill, this, 6)">
                     <img class="thumbnail-img" src="thumbnails/Other360_bonsai_thumbnail.png" alt="Other360/bonsai" width="64">
                   </span>
-                  <span class="pill scene-pill" data-value="Other360_room" onclick="selectCompVideo(activeMethodPill, this, 6)">
+                  <span class="pill scene-pill" data-value="room" onclick="selectCompVideo(activeMethodPill, this, 6)">
                     <img class="thumbnail-img" src="thumbnails/Other360_room_thumbnail.png" alt="Other360/room" width="64">
-                  </span>
-                  <span class="pill scene-pill" data-value="Other360_vasedeck" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_vasedeck_thumbnail.png" alt="Other360/vasedeck" width="64">
-                  </span>
-                  <span class="pill scene-pill" data-value="Other360_pinecone" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_pinecone_thumbnail.png" alt="Other360/pinecone" width="64">
                   </span>
                   
               </div>
@@ -651,7 +644,7 @@
       <div class="column is-full-width">
         <h2 class="title is-2">Quantitative Results</h2>
         <p class="content has-text-justified">
-          Quantitative comparison of 360° inpainting methods on our <span class="dnerf"> 360-USID dataset</span>. <span style="color: red;">Red</span> text indicates the best, and <span style="color: rgb(0, 0, 255);">Blue</span> text
+          Quantitative comparison of illusory object injection attack methods on three datasets. <strong>Bold</strong> text indicates the best, and <u>underline</u> text
 indicates the second-best performing method.
         </p>
         <img src="./static/images/quantitative.png" alt="Quantitative" style="width: 100%;"/>
