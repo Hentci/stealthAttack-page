@@ -179,39 +179,37 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <div class="pipeline-figure">
-        <img src="./static/images/teaser.png" alt="Teaser" style="width: 100%;"/>
+      <div class="pipeline-figure" style="display: flex; justify-content: center;">
+        <img src="./static/images/teaser.png" alt="Teaser" style="width: 80%;"/>
       </div>
       <h2 class="subtitle is-3 has-text-centered">
         <strong>StealthAttack</strong> can inject viewpoint-specific <span class="subtitle is-3 ghost-effect">illusions</span> into 3D Gaussian Splatting scenes.
       </h2>
       
       <!-- 把影片也放進相同的容器結構裡 -->
-  <div class="row">
-          <div class="col-md-6">
-              <video id="teaser-video-left" width="100%" autoplay loop muted controls>
-                  <source src="videos/teaser/road_compress.mp4" type="video/mp4" />
-              </video>
-              <p class="text-center mt-2"><strong>For stealthy illusory attack</strong></p>
-          </div>
-          <div class="col-md-6">
-              <video id="teaser-video-right" width="100%" autoplay loop muted controls>
-                  <source src="videos/teaser/bicycle_compress.mp4" type="video/mp4" />
-              </video>
-              <p class="text-center mt-2"><strong>For view-specific watermarking</strong></p>
-          </div>
-      </div>
+<div class="row" style="display: flex; gap: 20px;">
+    <div class="col-md-6" style="flex: 1;">
+        <video id="teaser-video-left" width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+            <source src="videos/teaser/road_compress.mp4" type="video/mp4" />
+        </video>
+        <p class="text-center mt-2">For stealthy <strong>illusory attack</strong></p>
     </div>
-  </div>
+    <div class="col-md-6" style="flex: 1;">
+        <video id="teaser-video-right" width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+            <source src="videos/teaser/bicycle_compress.mp4" type="video/mp4" />
+        </video>
+        <p class="text-center mt-2">For view-specific <strong>watermarking</strong></p>
+    </div>
+</div>
 </section>
 
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
-    <div class="container">
+    <div class="container"> -->
       
       <!-- 新增：統一標題區域 -->
-      <div class="comparison-header" style="display: flex; justify-content: space-between; margin-bottom: 20px; padding: 0 20px;">
+      <!-- <div class="comparison-header" style="display: flex; justify-content: space-between; margin-bottom: 20px; padding: 0 20px;">
         <div class="header-left" style="text-align: center; flex: 1; padding: 15px; border: 2px solid #28a745; border-radius: 8px; margin-right: 10px; background: rgba(40, 167, 69, 0.05);">
           <h3 style="margin: 0; color: #28a745; font-size: 1.2em;">✓ Original Scene</h3>
           <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">Clean/Unmodified</p>
@@ -220,10 +218,10 @@
           <h3 style="margin: 0; color: #dc3545; font-size: 1.2em;">⚠️ Under Attack</h3>
           <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">Our Method Applied</p>
         </div>
-      </div>
+      </div> -->
 
       <!-- 你原來的輪播代碼 -->
-      <div id="results-carousel" class="carousel results-carousel">
+      <!-- <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-bicycle">
           <div class="video-compare-container" id="bicycleDiv" style="width: 100%;">
             <video class="video" id="bicycle" loop playsinline autoPlay muted src="./videos/ours-vs-naive/bicycle.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
@@ -236,10 +234,10 @@
             <video class="video" id="francis" loop playsinline autoPlay muted src="./videos/ours-vs-naive/francis.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
             <canvas height=0 class="videoMerge" id="francisMerge" style="width: 100%;"></canvas>
           </div>
-        </div>
+        </div> -->
 
         <!-- 其他視頻項目保持不變 -->
-        <div class="item item-hydrant">
+        <!-- <div class="item item-hydrant">
           <div class="video-compare-container" id="hydrantDiv" style="width: 100%;">
             <video class="video" id="hydrant" loop playsinline autoPlay muted src="./videos/ours-vs-naive/hydrant.mp4" onplay="resizeAndPlay(this)" width="100%"></video>
             <canvas height=0 class="videoMerge" id="hydrantMerge" style="width: 100%;"></canvas>
@@ -275,13 +273,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   
   <!-- 你原來的subtitle -->
   <!-- <h2 class="subtitle is-4 has-text-centered" style="margin-top: -1.2rem;">
     3DGS scenes under ours attack.
   </h2> -->
-</section>
+<!-- </section> -->
 
 
 
@@ -359,10 +357,10 @@
         </h4>
         <h4>
           <strong>[2025.02.10]</strong> <img src="static/images/favicon.svg" alt="icon" style="height: 1em; vertical-align: -0.5mm;"> Release project page, arXiv paper, dataset, and evaluation results!
-        </h4>
-        <h4>
-          <strong>[2025.02.27]</strong> Accepted by CVPR 2025!
         </h4> -->
+        <h4>
+          <strong>[2025.06.27]</strong> Accepted by ICCV 2025!
+        </h4>
       </div>
     </div>  
 
