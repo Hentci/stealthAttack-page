@@ -1,10 +1,8 @@
 // JavaScript to handle mouseover and mouseout events
 var activeMethodPill = null;
 var activeScenePill = null;
-var activeModePill = null;
 var activeVidID = 0;
 var select = false;
-
 
 $(document).ready(function () {
     var editor = CodeMirror.fromTextArea(document.getElementById("bibtex"), {
@@ -12,157 +10,139 @@ $(document).ready(function () {
         lineWrapping: true,
         readOnly: true
     });
-    // 設定固定高度，例如 150px（可根據需要調整）
     editor.setSize(null, "180px");
     
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    activeMethodPill = $('.method-pill').filter('.active')[0];
-    activeModePill = $('.mode-pill').filter('.active')[0];
-    activeScenePill = $('.scene-pill').filter('.active')[0];
+    // 獲取 active 元素
+    activeMethodPill = $('.method-pill.active')[0];
+    activeScenePill = $('.scene-pill.active')[0];
 
-    console.log("console activae method pill: ", activeMethodPill)
-    console.log("console activae mode pill: ", activeModePill)
-    console.log("console activae scene pill: ", activeScenePill)
+    // 如果沒有 active scene，設定第一個可見的為 active
+    if (!activeScenePill) {
+        activeScenePill = $('.scene-pill:visible').first()[0];
+        if (activeScenePill) {
+            activeScenePill.classList.add('active');
+        }
+    }
 
-    // resizeAndPlay($('#sparsity')[0]);
+    // 如果沒有 active method，設定第一個可見的為 active
+    if (!activeMethodPill) {
+        activeMethodPill = $('.method-pill:visible').first()[0];
+        if (activeMethodPill) {
+            activeMethodPill.classList.add('active');
+        }
+    }
+
+    console.log("Active method pill: ", activeMethodPill);
+    console.log("Active scene pill: ", activeScenePill);
+
+    // 初始化載入第一個影片
+    if (activeMethodPill && activeScenePill) {
+        selectCompVideo(activeMethodPill, activeScenePill, 6);
+    }
 });
 
-function selectCompVideo(methodPill, scenePill, n_views, modePill) {
-    // Your existing logic for video selection
-    // var video = document.getElementById("compVideo");
+function selectCompVideo(methodPill, scenePill, n_views) {
     select = true;
-    var videoSwitch = document.getElementById("compVideoSwitch");
     var viewNum = document.getElementById("compVideoValue");
 
-    console.log("activate scene pill: ", activeScenePill)
-    console.log("activate method pill: ", activeMethodPill)
-    console.log("activate mode pill: ", activeModePill)
+    console.log("=== selectCompVideo called ===");
+    console.log("methodPill:", methodPill);
+    console.log("scenePill:", scenePill);
+    console.log("n_views:", n_views);
 
-    // console.log("scene pill: ", scenePill)
-    // console.log("method pill: ", methodPill)
-
-    // console.log("method: ", methodPill.getAttribute("data-value"))
-    // console.log("pill: ", scenePill.getAttribute("data-value"))
-    // console.log("mode: ", modePill.getAttribute("data-value"))
-
-    // console.log("active method pill 2: ", activeMethodPill.classList)
-
+    // 移除舊的 active class
     if (activeMethodPill) {
         activeMethodPill.classList.remove("active");
     }
     if (activeScenePill) {
         activeScenePill.classList.remove("active");
     }
-    if (modePill) {
-        activeModePill.classList.remove("active");
-        modePill.classList.add("active");
-        activeModePill = modePill;
-    }
+
+    // 設定新的 active
     activeMethodPill = methodPill;
     activeScenePill = scenePill;
     methodPill.classList.add("active");
     scenePill.classList.add("active");
-    method = methodPill.getAttribute("data-value");
-    pill = scenePill.getAttribute("data-value");
-    mode = activeModePill.getAttribute("data-value");
 
+    // 獲取數據值
+    var method = methodPill.getAttribute("data-value");
+    var pill = scenePill.getAttribute("data-value");
+    var mode = 'rgb'; // 固定使用 rgb 模式
 
-    
+    console.log("method:", method);
+    console.log("scene:", pill);
+    console.log("mode:", mode);
 
-    // if (videoSwitch.checked) {
-    //     mode = 'depth'
-    // } else {
-    //     mode = 'rgb'
-    // }
+    // 構建影片路徑
+    var videoPath = "./videos/comparison/" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
+    console.log("Video path:", videoPath);
 
-    // swap video to avoid flickering
+    // 切換影片
     activeVidID = 1 - activeVidID;
     var video_active = document.getElementById("compVideo" + activeVidID);
     var video_hidden = document.getElementById("compVideo" + (1 - activeVidID));
-    // video_active.src = "./videos/comparison/" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
-    video_active.src = "./videos/comparison/" + pill + "_" + method + "_vs_ours_" + mode + ".mp4";
+    
+    console.log("Setting video source to:", videoPath);
+    video_active.src = videoPath;
+    
+    // 監聽載入事件
+    video_active.addEventListener('loadstart', function() {
+        console.log("Video load started");
+    });
+    
+    video_active.addEventListener('loadeddata', function() {
+        console.log("Video data loaded");
+    });
+    
+    video_active.addEventListener('error', function(e) {
+        console.error("Video load error:", e);
+        console.error("Failed to load:", videoPath);
+    });
+    
     video_active.load();
 
-    if (n_views) {
+    if (n_views && viewNum) {
         viewNum.innerHTML = n_views;
     }
 }
 
-
 function updateMethodVisibility(mode) {
-    // 定義每個mode可以顯示的方法列表
-    const methodsByMode = {
-        // 'rgb': ['gscream', 'gaussiangrouping', 'infusion', '2dgsleftrefill', 'spin'],
-        // 'depth': ['infusion', 'poisson', 'gdd', 'scaleshift'],
-        // 'mask': ['gaussiangrouping']
-        'rgb': ['ipanerfnerfacto', 'ipanerfinstantngp', 'ipasplat', 'naive']
-    };
+    // 由於不需要 mode 切換，這個函數可以簡化
+    const methods = ['ipanerfnerfacto', 'ipanerfinstantngp', 'ipasplat', 'naive'];
+    const scenes = ['bicycle', 'bonsai', 'counter', 'garden', 'kitchen', 'room', 'stump'];
 
-    // 定義每個mode可以顯示的場景列表
-    const scenesByMode = {
-        // 'rgb': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room', 'Other360_vasedeck', 'Other360_pinecone'], // 所有場景
-        // 'depth': ['360USID_skateboard', '360USID_sunflower', 'Other360_bear', 'Other360_bonsai', 'Other360_vasedeck', 'Other360_pinecone'],
-        // 'mask': ['360USID_carton', '360USID_cone', '360USID_skateboard', '360USID_newcone', '360USID_sunflower', '360USID_plant', '360USID_cookie', 'Other360_kitchen', 'Other360_bear', 'Other360_bonsai', 'Other360_room'],
-        'rgb': ['bicycle', 'bonsai', 'counter', 'garden', 'kitchen', 'room', 'stump']
-    };
-
-    const titlesByMode = {
-        'rgb': 'StealthAttack outperforms other methods in illusory object injection attack.',
-        // 'depth': 'Our Adaptive Guided Depth Diffusion effectively produces well-aligned depth, enabling the accurate unprojection of the reference view into high-quality initial Gaussians. This ensures a reliable foundation for our subsequent SDEdit processes.',
-        // 'mask': 'Our Depth-Aware Unseen Mask Generation scheme can accurately identify unseen regions.'
-    };
-
-    const descriptByMode = {
-        'rgb': "Baseline method (left) vs our StealthAttack (right).",
-        // 'depth': "Baseline method (left) vs Our Adaptive Guided Depth Diffusion (right).",
-        // 'mask': "Gaussian Grouping Video Tracker (left) vs Our Depth-Aware Unseen Mask Generation (right)."
+    const titleElement = document.getElementById('title-text');
+    if (titleElement) {
+        titleElement.textContent = 'StealthAttack outperforms other methods in illusory object injection attack.';
     }
 
     const descriptionElement = document.getElementById('description-text');
-    if (descriptionElement && descriptByMode[mode]) {
-        descriptionElement.innerHTML = descriptByMode[mode];
+    if (descriptionElement) {
+        descriptionElement.innerHTML = "Baseline method (left) vs our StealthAttack (right).";
     }
 
-    // 更新標題
-    const titleElement = document.getElementById('title-text');
-    if (titleElement && titlesByMode[mode]) {
-        titleElement.textContent = titlesByMode[mode];
-    }
-
-    // 更新方法按鈕的顯示
+    // 確保所有方法和場景都可見
     const methodPills = document.querySelectorAll('.method-pill');
     methodPills.forEach(pill => {
         const methodValue = pill.getAttribute('data-value');
-        if (methodsByMode[mode].includes(methodValue)) {
+        if (methods.includes(methodValue)) {
             pill.style.display = '';
         } else {
             pill.style.display = 'none';
-            if (pill.classList.contains('active')) {
-                const firstVisibleMethod = document.querySelector(`.method-pill[data-value="${methodsByMode[mode][0]}"]`);
-                if (firstVisibleMethod) {
-                    firstVisibleMethod.click();
-                }
-            }
         }
     });
 
-    // 更新場景的顯示
     const scenePills = document.querySelectorAll('.scene-pill');
     scenePills.forEach(pill => {
         const sceneValue = pill.getAttribute('data-value');
-        if (scenesByMode[mode].includes(sceneValue)) {
+        if (scenes.includes(sceneValue)) {
             pill.style.display = '';
         } else {
             pill.style.display = 'none';
-            if (pill.classList.contains('active')) {
-                const firstVisibleScene = document.querySelector(`.scene-pill[data-value="${scenesByMode[mode][0]}"]`);
-                if (firstVisibleScene) {
-                    firstVisibleScene.click();
-                }
-            }
         }
     });
 }

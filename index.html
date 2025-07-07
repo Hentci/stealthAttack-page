@@ -544,26 +544,6 @@
                   </video>
               </div>
 
-
-              <!-- <div class="text-center" style="color: black;" id="mode-pills">
-                  <div class="btn-group btn-group-sm">
-                      <span class="btn btn-primary mode-pill active" data-value="rgb"
-                          onclick="updateMethodVisibility('rgb'); selectCompVideo(activeMethodPill, activeScenePill, null, this)">
-                          Inpainting Results
-                      </span>
-                      <span class="btn btn-primary mode-pill" data-value="mask"
-                          onclick="updateMethodVisibility('mask'); selectCompVideo(activeMethodPill, activeScenePill, null, this)">
-                          Unseen Mask
-                      </span>
-                      <span class="btn btn-primary mode-pill" data-value="depth"
-                          onclick="updateMethodVisibility('depth'); selectCompVideo(activeMethodPill, activeScenePill, null, this)">
-                          Depth Initilaized Points
-                      </span>
-                  </div>
-              </div> -->
-
-
-              <br>
               <p class="text-justify" style="text-align: center; display: none;">
                 Baseline method (left) vs StealthAttack (right). Scene trained on <span id="compVideoValue">3</span> views. Try selecting different methods and scenes!
               </p>
@@ -616,15 +596,17 @@
                       <img class="thumbnail-img" src="thumbnails/360USID_cookie_thumbnail.png" alt="360USID/cookie" width="64">
                   </span>
                   <br> -->
-
+                  <span class="pill scene-pill active" data-value="bicycle" onclick="selectCompVideo(activeMethodPill, this, 6)">
+                    <img class="thumbnail-img" src="thumbnails/bicycle.png" alt="Other360/kitchen" width="64">
+                  </span>
                   <span class="pill scene-pill" data-value="kitchen" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_kitchen_thumbnail.png" alt="Other360/kitchen" width="64">
+                    <img class="thumbnail-img" src="thumbnails/kitchen.png" alt="Other360/kitchen" width="64">
                   </span>
                   <span class="pill scene-pill" data-value="bonsai" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_bonsai_thumbnail.png" alt="Other360/bonsai" width="64">
+                    <img class="thumbnail-img" src="thumbnails/bonsai.png" alt="Other360/bonsai" width="64">
                   </span>
                   <span class="pill scene-pill" data-value="room" onclick="selectCompVideo(activeMethodPill, this, 6)">
-                    <img class="thumbnail-img" src="thumbnails/Other360_room_thumbnail.png" alt="Other360/room" width="64">
+                    <img class="thumbnail-img" src="thumbnails/room.png" alt="Other360/room" width="64">
                   </span>
                   
               </div>
@@ -709,6 +691,12 @@ indicates the second-best performing method.
       </div>
     </div>
   </div>
+
+      <!-- fried shrimp -->
+      <div class="pipeline-figure" style="display: flex; justify-content: center;">
+        <img src="./static/images/fox_removebg.png" alt="Teaser" style="width: 5%;"/>
+      </div>
+
 </footer>
 
 </body>
