@@ -186,21 +186,101 @@
         <strong>StealthAttack</strong> can inject viewpoint-specific <span class="subtitle is-3 ghost-effect">illusions</span> into 3D Gaussian Splatting scenes.
       </h2>
       
-      <!-- 把影片也放進相同的容器結構裡 -->
-<div class="row" style="display: flex; gap: 20px;">
-    <div class="col-md-6" style="flex: 1;">
-        <video id="teaser-video-left" width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
-            <source src="videos/teaser/road_death.mp4" type="video/mp4" />
-        </video>
-        <p class="text-center mt-2">For stealthy <strong>illusory attack</strong></p>
-    </div>
-    <div class="col-md-6" style="flex: 1;">
-        <video id="teaser-video-right" width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
-            <source src="videos/teaser/bicycle_compress.mp4" type="video/mp4" />
-        </video>
-        <p class="text-center mt-2">For view-specific <strong>watermarking</strong></p>
-    </div>
-</div>
+      <!-- 2-Video Slideshow Container -->
+      <div class="slideshow-container" style="position: relative; max-width: 100%; margin: 0 auto; overflow: hidden;">
+        <!-- Slideshow wrapper -->
+        <div class="slideshow-wrapper" style="display: flex; transition: transform 0.5s ease-in-out; width: 300%;">
+          
+          <!-- Slide 1: Video 1 & 2 -->
+          <div class="slide" style="width: 33.33%; display: flex; gap: 20px; padding: 0 10px;">
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/road_death.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For stealthy <strong>illusory attack</strong></p>
+            </div>
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/bicycle_compress.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For view-specific <strong>watermarking</strong></p>
+            </div>
+          </div>
+          
+          <!-- Slide 2: Video 3 & 4 -->
+          <div class="slide" style="width: 33.33%; display: flex; gap: 20px; padding: 0 10px;">
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/counter_ours.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For stealthy <strong>illusory attack</strong></p>
+            </div>
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/ballroom_ours.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For view-specific <strong>watermarking</strong></p>
+            </div>
+          </div>
+          
+          <!-- Slide 3: Video 5 & 6 -->
+          <div class="slide" style="width: 33.33%; display: flex; gap: 20px; padding: 0 10px;">
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/garden_ours.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For stealthy <strong>illusory attack</strong></p>
+            </div>
+            <div style="flex: 1;">
+              <video width="100%" autoplay loop muted controls style="height: 250px; object-fit: cover;">
+                <source src="videos/teaser/lab_ours.mp4" type="video/mp4" />
+              </video>
+              <p class="text-center mt-2">For view-specific <strong>watermarking</strong></p>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Navigation arrows -->
+        <button class="slideshow-nav prev" onclick="changeSlide(-1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px;">❮</button>
+        <button class="slideshow-nav next" onclick="changeSlide(1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 50%; font-size: 18px;">❯</button>
+        
+        <!-- Dots indicator -->
+        <div class="slideshow-dots" style="text-align: center; margin-top: 20px;">
+          <span class="dot active" onclick="currentSlide(1)" style="height: 12px; width: 12px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+          <span class="dot" onclick="currentSlide(2)" style="height: 12px; width: 12px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+          <span class="dot" onclick="currentSlide(3)" style="height: 12px; width: 12px; margin: 0 4px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer;"></span>
+        </div>
+      </div>
+      
+      <script>
+        let slideIndex = 1;
+        const totalSlides = 3;
+        showSlides(slideIndex);
+        
+        function changeSlide(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          const wrapper = document.querySelector('.slideshow-wrapper');
+          const dots = document.getElementsByClassName("dot");
+          
+          if (n > totalSlides) slideIndex = 1;
+          if (n < 1) slideIndex = totalSlides;
+          
+          wrapper.style.transform = `translateX(-${(slideIndex - 1) * 33.33}%)`;
+          
+          for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          dots[slideIndex-1].className += " active";
+        }
+      </script>
 </section>
 
 
