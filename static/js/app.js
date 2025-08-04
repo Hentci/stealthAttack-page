@@ -113,7 +113,7 @@ function selectCompVideo(methodPill, scenePill, n_views) {
 function updateMethodVisibility(mode) {
     // 由於不需要 mode 切換，這個函數可以簡化
     const methods = ['ipanerfnerfacto', 'ipanerfinstantngp', 'ipasplat', 'naive'];
-    const scenes = ['bicycle', 'bonsai', 'counter', 'garden', 'kitchen', 'room', 'stump'];
+    const scenes = ['bicycle', 'bonsai', 'counter', 'garden', 'kitchen', 'room', 'stump', 'francis', 'hydrant', 'ballroom', 'museum', 'lab', 'pillar', 'road', 'sky'];
 
     const titleElement = document.getElementById('title-text');
     if (titleElement) {
